@@ -1,0 +1,20 @@
+# Default ignored files
+/shelf/
+
+*.iws
+*.iml
+*.xml
+
+caches
+libraries
+dictionaries
+
+# Retaining
+!compiler.xml
+!runConfigurations.xml
+!vcs.xml
+
+!codeStyles/*.xml
+!fileTemplates/*.*
+!inspectionProfiles/*.xml
+!runConfigurations/*.xml
