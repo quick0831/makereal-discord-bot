@@ -1,0 +1,27 @@
+root = true
+
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = tab
+ij_continuation_indent_size = 8
+max_line_length = 120
+tab_width = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+ij_any_else_on_new_line = false
+ij_any_catch_on_new_line = false
+ij_any_finally_on_new_line = false
+ij_any_block_comment_at_first_column = false
+ij_any_line_comment_at_first_column = false
+
+ij_any_block_brace_style = end_of_line
+ij_any_line_comment_add_space = true
+ij_any_indent_case_from_switch = true
+ij_any_space_after_colon = true
+ij_any_space_after_comma = true
+ij_any_space_after_for_semicolon = true
+ij_any_align_multiline_chained_methods = true
+ij_formatter_enabled = true
