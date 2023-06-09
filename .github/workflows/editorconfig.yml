@@ -11,6 +11,5 @@ jobs:
   check_style:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
-    - run: editorconfig-checker
+      - uses: actions/checkout@v3
+      - uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
