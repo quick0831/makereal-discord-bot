@@ -1,0 +1,17 @@
+name: EditorConfig
+
+on:
+  - push
+  - pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  check_style:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: EditorConfig-Action
+      uses: zbeekman/EditorConfig-Action@v1.1.1
+
