@@ -9,7 +9,7 @@ public class CommandEcho implements CmdCommand {
     @Override
     public CompletableFuture<Integer> run(String[] args, MessageReceivedEvent event) {
         return CompletableFuture
-                .supplyAsync(() -> event.getMessage().getContentRaw().split("[ \t\n\r]+")[1])
+                .supplyAsync(() -> event.getMessage().getContentRaw().split("[ \t\n\r]+", 2)[1])
                 .thenApplyAsync(msg -> event.getChannel().sendMessage(msg).submit())
                 .handle((result, exception) -> {
                     if (exception == null) {
