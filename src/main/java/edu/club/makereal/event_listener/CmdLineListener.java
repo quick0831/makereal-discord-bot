@@ -24,19 +24,21 @@ public class CmdLineListener extends ListenerAdapter {
 
         String[] args = msg.split("[ \t\n\r]+");
 
-        if (args.length >= 1) {
-            CmdCommand c = cmd.get(args[0]);
-            if (c == null) {
-                event.getChannel().sendMessage(String.format("Unknown command `%s`", args[0])).queue();
-            } else {
-                c.run(args, event)
-                 .handle((result, exception) -> ((exception == null) ? result : 100))
-                 .whenCompleteAsync((result, exception) -> {
-                     if (result != 0) {
-                         event.getChannel().sendMessage(String.format("Command failed with code `%d`", result)).queue();
-                     }
-                 });
-            }
+        if (args.length == 0)
+            return;
+
+        CmdCommand c = cmd.get(args[0]);
+        if (c == null) {
+            event.getChannel().sendMessage(String.format("Unknown command `%s`", args[0])).queue();
+            return;
         }
+
+        c.run(args, event)
+         .handle((result, exception) -> ((exception == null) ? result : 100))
+         .whenCompleteAsync((result, exception) -> {
+             if (result != 0) {
+                 event.getChannel().sendMessage(String.format("Command failed with code `%d`", result)).queue();
+             }
+         });
     }
 }
