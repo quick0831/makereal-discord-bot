@@ -29,15 +29,13 @@ public class CmdLineListener extends ListenerAdapter {
             if (c == null) {
                 event.getChannel().sendMessage(String.format("Unknown command `%s`", args[0])).queue();
             } else {
-                int ret;
-                try {
-                    ret = c.run(args, event).get();
-                } catch (Throwable e) {
-                    ret = 100;
-                }
-                if (ret != 0) {
-                    event.getChannel().sendMessage(String.format("Command failed with code `%d`", ret)).queue();
-                }
+                c.run(args, event)
+                 .handle((result, exception) -> ((exception == null) ? result : 100))
+                 .whenCompleteAsync((result, exception) -> {
+                     if (result != 0) {
+                         event.getChannel().sendMessage(String.format("Command failed with code `%d`", result)).queue();
+                     }
+                 });
             }
         }
     }
