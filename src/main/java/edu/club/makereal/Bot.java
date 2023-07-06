@@ -20,7 +20,9 @@ public class Bot {
 
         cmd.put("echo", new CommandEcho());
         cmd.put("sleep", (args_, event) -> CompletableFuture
-                .supplyAsync(() -> {
+                .completedFuture(0)
+                .thenComposeAsync(res -> event.getChannel().sendMessage("sleep 1 second").submit())
+                .thenApplyAsync(res -> {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {
@@ -28,7 +30,7 @@ public class Bot {
                     }
                     return 0;
                 })
-                .thenApplyAsync(res -> event.getChannel().sendMessage("sleep 1 second").submit())
+                .thenComposeAsync(res -> event.getChannel().sendMessage("done").submit())
                 .handle((result, exception) -> (exception == null) ? 0 : 1)
         );
 
