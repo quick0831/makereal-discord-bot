@@ -22,6 +22,9 @@ public class CmdLineListener extends ListenerAdapter {
             return;
         String msg = event.getMessage().getContentRaw();
 
+        if (msg.equals(""))
+            return;
+
         String[] args = msg.split("[ \t\n\r]+");
 
         if (args.length == 0)
