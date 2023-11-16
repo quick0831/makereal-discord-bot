@@ -2,6 +2,7 @@ package edu.club.makereal;
 
 import edu.club.makereal.cmd_command.CommandEcho;
 import edu.club.makereal.event_listener.CmdLineListener;
+import edu.club.makereal.event_listener.DmListener;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
@@ -15,6 +16,7 @@ public class Bot {
         ArrayList<GatewayIntent> intents = new ArrayList<>();
         intents.add(GatewayIntent.MESSAGE_CONTENT); // privileged
         intents.add(GatewayIntent.GUILD_MESSAGES);
+        intents.add(GatewayIntent.DIRECT_MESSAGES);
 
         HashMap<String, CmdCommand> cmd = new HashMap<>();
 
@@ -36,6 +38,7 @@ public class Bot {
 
         JDABuilder.createDefault(args[0], intents)
                   .addEventListeners(new CmdLineListener(cmd))
+                  .addEventListeners(new DmListener())
                   .build();
     }
 
